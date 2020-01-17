@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web</title>
+    </head>
+    <body>
+        <h1>Hi</h1>
+        {% if user.is_authenticated %}
+        <h4>Hello! {{user.first_name}}</h4>
+        <a href="accounts/logout">Logout</a>
+        <br>
+        <h2>物品清單</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>名稱</th>
+                    <th>狀態</th>
+                </tr>
+            </thead>
+            {% for item in Item %}
+            <tbody>
+                <tr>
+                    <td>{{item.count}}</td>
+                    <td>{{item.name}}</td>
+                    {% if item.status %}
+                    <td>可借用</td>
+                    {% else %}
+                    <td>已借出</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+        <a href="accounts/login">login</a><br>
+        <a href="accounts/register">register</a>
+        {% endif %}
+    </body>
+</html>
